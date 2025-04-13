@@ -1,7 +1,7 @@
-# EduVents - College Event Management Website  
+# EVent Management - College Event Management Website  
 **Streamlining Event Management for College Campuses**  
 
-**EduVents** is a modern web application built using the MERN stack to simplify and enhance the process of organizing, managing, and participating in college events. This platform empowers students and administrators to seamlessly coordinate events, track registrations, and foster engagement across the campus.
+**EVent Management** is a modern web application built using the MERN stack to simplify and enhance the process of organizing, managing, and participating in college events. This platform empowers students and administrators to seamlessly coordinate events, track registrations, and foster engagement across the campus.
 
 ---
 
@@ -24,16 +24,16 @@
 ## 📌 Setup Instructions  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/Harshjangid015/EduVents---College-Event-Management-Website-MERN.git
+   git clone [text](https://github.com/Manasa1013/EVent-Management.git)
    ```
 2. Navigate to the project directory:  
    ```bash
-   cd EduVents
+   cd EVent-Management
    ```
 3. Install dependencies for both frontend and backend:  
    ```bash
-   cd client && npm install  
-   cd ../server && npm install  
+   cd frontend && npm install  
+   cd ../backend && npm install  
    ```
 4. Set up a `.env` file for your backend with the required variables:  
    - `MONGO_URI`: MongoDB connection string  
@@ -42,11 +42,11 @@
 5. Run the application:  
    - Start the server:  
      ```bash
-     cd server && npm start
+     cd backend && npm start
      ```
    - Start the client:  
      ```bash
-     cd client && npm start
+     cd frontend && npm start
      ```
 6. Open your browser and visit `http://localhost:3000`.
 
