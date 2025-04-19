@@ -5,6 +5,7 @@ import './MyEvents.css';
 const MyEvents = () => {
   const [events, setEvents] = useState([]);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const fetchMyEvents = async () => {
@@ -25,12 +26,25 @@ const MyEvents = () => {
         
 
         if (response.status === 200) {
-          setEvents(response.data); // Store the events in state
+          if(response.data.events.length === 0) {
+            setMessage('No events found for this user.');
+            setEvents([]); // Clear events if none found
+            setError(''); // Clear error message
+          }
+          else if(response.data.events.length > 0) {
+            setMessage('');
+            console.log(response.data.events);
+            setEvents(response.data.events); // Store the events in state
+            setError(''); // Clear error message
+
+          }
         } else {
+          setMessage('');
           setError(`Error: ${response.status} - ${response.statusText}`);
         }
       } catch (err) {
         setError('An error occurred while fetching your events.');
+        setMessage('');
         console.error(err);
       }
     };
@@ -39,12 +53,19 @@ const MyEvents = () => {
   }, []);
 
   if (error) return <p className="error-message">{error}</p>;
-  if (events.length === 0) return <p>No events found.</p>;
-
+  if (events.length === 0) return <p className='success-message white'>{message}</p>;
+  
   return (
+    <>
+    
+    
     <div className="my-events-container">
       <h1 className='rcenter'>My Registered Events</h1>
+      
       <div className="event-list">
+        
+        
+        {/* Map through the events and display them */}
         {events.map((event) => (
           <div key={event._id} className="event-card">
             <div className="event-image-container">
@@ -61,6 +82,7 @@ const MyEvents = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 

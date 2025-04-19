@@ -42,8 +42,19 @@
   .event-content p {
     margin: 5px 0;
     color: #353535;
+     
   }
   
+  .no-events-message{
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-top: 20px;
+  }
+  .success-message {
+    color: white;
+    text-align: center; 
+  }
   .error-message {
     color: red;
     text-align: center;

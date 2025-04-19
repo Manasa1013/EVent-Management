@@ -130,9 +130,13 @@ router.get('/myevents', authMiddleware(['student']), async (req, res) => {
       // Find events where the logged-in user is in the registrations
       const events = await Event.find({ 'registrations.user' : req.user._id }).sort({_id:-1});
       
-      if (events.length === 0) {
-        return res.status(404).json({ message: 'No events found for this user.' });
+      if(events.length > 0){
+        return res.status(200).json({events: events, message: 'Events fetched successfully.'});
       }
+      else if(events.length === 0){
+        return res.status(200).json({ events: [], message: 'No events found for this user.' });
+      }
+      
 
       res.json(events);
     } catch (error) {
