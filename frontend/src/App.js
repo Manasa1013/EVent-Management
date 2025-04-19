@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route, Navigate} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, Navigate, useNavigate, useLocation} from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
 import EventList from './components/EventList';
@@ -16,6 +16,13 @@ function App() {
   // Check if the user is authenticated by checking for a token in localStorage
   const isAuthenticated = !!localStorage.getItem('token');
   console.log(isAuthenticated);
+  const navigate = useNavigate(); // Use useNavigate for programmatic navigation
+  const location = useLocation(); // Get the current location
+  useEffect(() => {
+    if(!isAuthenticated && location.pathname !== '/login' && location.pathname !== '/register') {
+      navigate('/login'); // Redirect to login if not authenticated
+    }
+  }, [isAuthenticated, navigate, location.pathname]); // Empty dependency array to run only once on mount
   
   return (
     
@@ -32,8 +39,8 @@ function App() {
         <Route path="/event/:id" element={<PrivateRoute role={['student', 'coordinator']}><EventDetail /></PrivateRoute>} />
 
         {/* Login and Register routes */}
-        <Route path="/login" element={isAuthenticated ? <Navigate to="/events" /> : <Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={isAuthenticated ? <Navigate to="/events" replace /> : <Login />} />
+        <Route path="/register" element={isAuthenticated ? <Navigate to="/events" replace /> : <Register />} />
         {/* <Route path="/register" element={<PrivateRoute role="admin"><Register /></PrivateRoute>} /> */}
 
 
