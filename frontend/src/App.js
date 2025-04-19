@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate} from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
 import EventList from './components/EventList';
@@ -10,17 +10,17 @@ import CreateEvent from './components/CreateEvent';
 import Profile from './components/Profile';
 import EventDetail from './components/EventDetail'; // Import EventDetail
 import PrivateRoute from './components/PrivateRoute';
-import MyEvents from './components/MyEvents'; 
+import MyEvents from './components/MyEvents';
 
 function App() {
   // Check if the user is authenticated by checking for a token in localStorage
   const isAuthenticated = !!localStorage.getItem('token');
-
+  console.log(isAuthenticated);
+  
   return (
-    <Router>
-      {/* Navbar */}
-      {isAuthenticated && <Navbar />}
-
+    
+    <div className="App">
+      {isAuthenticated && <Navbar />} {/* Show Navbar only if authenticated */} 
       <Routes>
         {/* If user is authenticated, redirect to events page; otherwise, show LandingPage */}
         <Route path="/" element={isAuthenticated ? <Navigate to="/events" /> : <LandingPage />} />
@@ -45,8 +45,8 @@ function App() {
         {/* Protected route for profile */}
         <Route path="/profile" element={<PrivateRoute role={['student', 'coordinator']}><Profile /></PrivateRoute>} />
       </Routes>
-    </Router>
-  );
+    </div>
+  )
 }
 
 export default App;

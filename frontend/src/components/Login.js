@@ -44,6 +44,7 @@ const Login = () => {
           required
         />
         <button type="submit">Login</button>
+        <button type="button" className='button-secondary' onClick={() => window.location.href = '/register'}>Register</button>
       </form>
     </div>
   );

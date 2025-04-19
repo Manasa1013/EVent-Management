@@ -40,4 +40,12 @@
   .register-form button:hover {
     background-color: #33373b;
   }
-  
+  .register-form .button-secondary {
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid #ddd;
+  }
+
+  .register-form .button-secondary:hover {
+    background-color: #e0e0e0;
+  }

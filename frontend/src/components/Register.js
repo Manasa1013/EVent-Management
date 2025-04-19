@@ -110,6 +110,7 @@ const Register = () => {
           </>
         )}
         <button type="submit">Register</button>
+        <button type="button" className='button-secondary' onClick={() => window.location.href = '/login'}>Login</button>
       </form>
     </div>
   );

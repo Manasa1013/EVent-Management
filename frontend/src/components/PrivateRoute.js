@@ -8,12 +8,12 @@ const PrivateRoute = ({ children, role }) => {
 
   // If no token is found, redirect to login
   if (!token) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace/>;
   }
 
   // If the user's role doesn't match the required role, redirect to the home page
   if (role && !role.includes(userRole)) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" replace/>;
   }
 
   return children;
